@@ -1,0 +1,20 @@
+#+title: Decimal to Roman
+
+Script that generates a Roman numeral number from a decimal number.
+For example:
+
+-- Input 1660 > Output "MDCLX"
+-- Input 1970 > Output "MDCCCCLXX"
+
+As an exercise, this is done in /Haskell/, /JavaScript/, /Python/ and /Swift/.
+
+* Lookup table.
+
+Possible mappings:
+
+| Base 10   | Roman numeral possibilities |
+|-----------+-----------------------------|
+| ones      | I, V                        |
+| Tens      | X, L                        |
+| Hundreds  | C, D                        |
+| Thousands | M                           |
