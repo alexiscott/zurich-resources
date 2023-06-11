@@ -1,14 +1,17 @@
 #+title: Decimal to Roman
+#+PROPERTY: header-args:haskell :tangle "dec-to-roman.hs" :comments none :results none
+#+PROPERTY: header-args:python :tangle "dec-to-roman.py" :comments none :results none
 
 Script that generates a Roman numeral number from a decimal number.
 For example:
 
--- Input 1660 > Output "MDCLX"
--- Input 1970 > Output "MDCCCCLXX"
+- Input 1660 > Output "MDCLX"
+- Input 1970 > Output "MDCCCCLXX"
 
 As an exercise, this is done in /Haskell/, /JavaScript/, /Python/ and /Swift/.
+* Construct Data
 
-* Lookup table.
+A lookup table
 
 Possible mappings:
 
@@ -18,3 +21,84 @@ Possible mappings:
 | Tens      | X, L                        |
 | Hundreds  | C, D                        |
 | Thousands | M                           |
+
+
+We construct the lookup table by combining/ zipping two lists into pairs:
+
+** Haskell
+
+
+#+begin_src haskell
+rn = [("I", "V"), ("X", "L"), ("C", "D"), ("M", "¬")]
+#+end_src
+
+An example of a data structure from /constructData/, given the decimal number /1234/:
+- [(4,("I","V")),(3,("X","L")),(2,("C","D")),(1,("M","\172"))]
+- The first line is the type signature. It shows a list of /Int/s each associated with a Tuple of Chars.
+
+#+begin_src haskell
+constructData :: Int -> [([Char], [Char])] -> [(Int, ([Char], [Char]))]
+constructData n rn = zip (reverse (digs n)) rn
+#+end_src
+
+*** Other
+#+begin_src haskell
+makeRomanNumeral n rn
+  | n >= 5000 = error "Works with numbers up to 4999."
+  | otherwise = mconcat $ reverse $ map (\t -> makeRomanChar (fst t) (snd t)) (constructData n rn)
+
+makeRomanChar n t
+  | n == 5 = snd t
+  | n > 5 = (snd t) ++ take (n - 5) (cycle (fst t))
+  | n == 0 = ""
+  | otherwise = take n (cycle (fst t))
+
+#+end_src
+- Helpers
+  - Starting at the lowest digit.
+#+begin_src haskell
+reverseInt :: Integer -> Integer
+reverseInt = read . reverse . show
+#+end_src
+
+#+begin_src haskell
+digs :: Integral x => x -> [x]
+digs 0 = []
+digs x = digs (x `div` 10) ++ [x `mod` 10]
+#+end_src
+
+** Python
+
+
+#+begin_src python
+def roman_numeral_data(n, rn):
+    return list(zip(list(str(n)), rn))
+#+end_src
+
+*** Other code in Python.
+
+#+begin_src python
+rn = [("I", "V"), ("X", "L"), ("C", "D"), ("M", "¬")]
+result = ''
+num = 1900 # Change this to the number you want to use.
+
+# 2. Return roman numeral.
+def make_roman_char(n, t):
+    if int(n) == '5':
+        return t[1]                          # V
+    elif int(n) > 5:
+        return ((int(n) - 5) * t[0]) + t[1] # VI, VII, VIII, or vIIII.
+    elif int(n) == 0:
+        return ""                            # ""
+    else:
+        return int(n) * t[0]                      # I, II, III, or IIII.
+
+for item in roman_numeral_data(num, rn):
+    result += make_roman_char(item[0], item[1])
+print (result[::-1]) # reverse the string back. [::-1]```
+#+end_src
+
+
+* Entry point
+
+This is the code that we will call, to run the program.

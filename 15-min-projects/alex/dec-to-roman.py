@@ -1,10 +1,9 @@
-rn = [("I", "V"), ("X", "L"), ("C", "D"), ("M", "¬")]
-result = ''
-
-# 1. Should be able to construct a useful data structure.
 def roman_numeral_data(n, rn):
     return list(zip(list(str(n)), rn))
 
+rn = [("I", "V"), ("X", "L"), ("C", "D"), ("M", "¬")]
+result = ''
+num = 1920 # Change this to the number you want to use.
 
 # 2. Return roman numeral.
 def make_roman_char(n, t):
