@@ -3,7 +3,7 @@ def roman_numeral_data(n, rn):
 
 rn = [("I", "V"), ("X", "L"), ("C", "D"), ("M", "¬")]
 result = ''
-num = 1920 # Change this to the number you want to use.
+num = 1900 # Change this to the number you want to use.
 
 # 2. Return roman numeral.
 def make_roman_char(n, t):

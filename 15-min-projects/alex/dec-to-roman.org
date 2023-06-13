@@ -46,7 +46,7 @@ constructData :: Int -> [([Char], [Char])] -> [(Int, ([Char], [Char]))]
 constructData n rn = zip (reverse (digs n)) rn
 #+end_src
 
-*** Other
+*** Other code used.
 #+begin_src haskell
 makeRomanNumeral n rn
   | n >= 5000 = error "Works with numbers up to 4999."
@@ -71,6 +71,12 @@ digs :: Integral x => x -> [x]
 digs 0 = []
 digs x = digs (x `div` 10) ++ [x `mod` 10]
 #+end_src
+
+An example for running this code from GHCI (Interactive Glasgow Haskell Compiler).
+
+#+begin_example shell
+makeRomanNumeral 1900 rn
+#+end_example
 
 ** Python version
 
@@ -104,7 +110,4 @@ for item in roman_numeral_data(num, rn):
 print (result[::-1]) # reverse the string back. [::-1]```
 #+end_src
 
-
-* Entry point
-
-This is the code that we will call, to run the program.
+Tu run, change the /num/ value to the number you want to convert from and run the script through Python.
