@@ -8,7 +8,7 @@ For example:
 - Input 1660 > Output "MDCLX"
 - Input 1970 > Output "MDCCCCLXX"
 
-As an exercise, this is done in /Haskell/, /JavaScript/, /Python/ and /Swift/.
+As an exercise, this is done in /Haskell/ and /JavaScript/.
 * Construct Data
 
 A lookup table
@@ -33,7 +33,11 @@ rn = [("I", "V"), ("X", "L"), ("C", "D"), ("M", "¬")]
 #+end_src
 
 An example of a data structure from /constructData/, given the decimal number /1234/:
-- [(4,("I","V")),(3,("X","L")),(2,("C","D")),(1,("M","\172"))]
+
+#+begin_example
+[(4,("I","V")),(3,("X","L")),(2,("C","D")),(1,("M","\172"))]
+#+end_example
+
 - The first line is the type signature. It shows a list of /Int/s each associated with a Tuple of Chars.
 
 #+begin_src haskell
@@ -69,7 +73,7 @@ digs x = digs (x `div` 10) ++ [x `mod` 10]
 
 ** Python
 
-
+Using the same zip technique in Python as in Haskell. /n/ is the number and /rn/ the roman numerals to be looked up.
 #+begin_src python
 def roman_numeral_data(n, rn):
     return list(zip(list(str(n)), rn))
