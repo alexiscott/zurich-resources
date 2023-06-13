@@ -29,6 +29,8 @@ We construct the lookup table by combining/ zipping two lists into pairs.
 
 ** Haskell version
 
+https://github.com/alexiscott/zurich-resources/blob/master/15-min-projects/alex/dec-to-roman.hs
+
 #+begin_src haskell
 rn = [("I", "V"), ("X", "L"), ("C", "D"), ("M", "¬")]
 #+end_src
@@ -80,8 +82,11 @@ makeRomanNumeral 1900 rn
 
 ** Python version
 
+Python version:  https://github.com/alexiscott/zurich-resources/blob/master/15-min-projects/alex/dec-to-roman.py
+
 Using the same zip technique in Python as in Haskell. /n/ is the number and /rn/ the roman numerals to be
 looked up.
+
 #+begin_src python
 def roman_numeral_data(n, rn):
     return list(zip(list(str(n)), rn))
